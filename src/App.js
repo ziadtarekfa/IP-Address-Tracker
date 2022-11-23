@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import './App.css';
 import arrowIcon from './icons/icon-arrow.svg';
+
 
 function App() {
 
@@ -13,6 +15,18 @@ function App() {
         console.log(data);
       });
   }
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      /* geolocation is available */
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+        console.log(`latitude is equal ${position.coords.latitude} and longtitude ${position.coords.longitude}`);
+      });
+    } else {
+      /* geolocation IS NOT available */
+    }
+  })
+
   return (
     <main className="App">
       <div className='search-ip-container'>
@@ -24,7 +38,7 @@ function App() {
         </div>
       </div>
       <div className='map'>
-
+        {/* <MapConatiner /> */}
       </div>
     </main>
   );
