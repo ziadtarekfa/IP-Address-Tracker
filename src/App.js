@@ -1,48 +1,48 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, useMap, Marker, Popup, useMapEvents, useMapEvent } from 'react-leaflet'
 import './App.css';
+
 import arrowIcon from './icons/icon-arrow.svg';
 
+function Map() {
 
-function App() {
-
-  const APIKEY = "at_Liuec0O6i0zNUKMJUryMa5FscrYtg";
-  const getLocation = (ip) => {
-
-    fetch(`https://geo.ipify.org/api/v2/country?apiKey=${APIKEY}&ipAddress=${ip}`)
-      .then((response) => {
-        return response.json()
-      }).then((data) => {
-        console.log(data);
-      });
-  }
+  const map = useMap();
   useEffect(() => {
+    console.log("LOADING BITCH");
     if ('geolocation' in navigator) {
       /* geolocation is available */
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
-        console.log(`latitude is equal ${position.coords.latitude} and longtitude ${position.coords.longitude}`);
+        map.flyTo([position.coords.latitude, position.coords.longitude], 12);
       });
-    } else {
-      /* geolocation IS NOT available */
     }
-  })
+  }, []);
+}
+
+function App() {
 
   return (
-    <main className="App">
-      <div className='search-ip-container'>
-        <h1>IP Address Tracker</h1>
-        <div>
-          <input placeholder='Search for any IP Address'></input>
-          <button onClick={() => getLocation("192.161.2.1")}>Click me</button>
-          {/* <img src={arrowIcon} alt="arrow icon"></img> */}
-        </div>
-      </div>
-      <div className='map'>
-        {/* <MapConatiner /> */}
-      </div>
+    <main>
+
+
+      <MapContainer
+        className='map'
+        center={[38.685516, -101.073324]}
+        zoom={6}
+        scrollWheelZoom={true}
+
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+
+        <Map />
+      </MapContainer>
+
     </main>
+
   );
 }
-// at_Liuec0O6i0zNUKMJUryMa5FscrYtg
+
 
 export default App;
