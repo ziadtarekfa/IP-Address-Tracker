@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { MapContainer, TileLayer, useMap, Marker, Popup, useMapEvents, useMapEvent } from 'react-leaflet'
 import './App.css';
+import IpResult from './components/IpResult';
 
 import arrowIcon from './icons/icon-arrow.svg';
 
@@ -35,26 +36,38 @@ function App() {
     setMarkerPosition([20.3, -81.5]);
   }
   return (
-    <main>
+    <>
+      <main>
 
-      <MapContainer ref={mapRef}
-        className='map'
-        center={[38.685516, -101.073324]}
-        zoom={6}
-        scrollWheelZoom={true}
+        <div className='container'>
+          <h2>IP Address Tracker</h2>
+          <div className='ip-input-container'>
+            <input placeholder='Search for any IP address'></input>
+            <button onClick={handleClick}>Click me</button>
+          </div>
 
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={markerPosition}></Marker>
+        </div>
 
-      </MapContainer>
 
-      <button onClick={handleClick}>CLICK ME</button>
+        <MapContainer ref={mapRef}
+          className='map'
+          center={[38.685516, -101.073324]}
+          zoom={6}
+          scrollWheelZoom={true}
 
-    </main>
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={markerPosition}></Marker>
+
+        </MapContainer>
+
+
+      </main>
+      <IpResult />
+    </>
 
   );
 }

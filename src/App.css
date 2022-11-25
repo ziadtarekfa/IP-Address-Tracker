@@ -1,8 +1,59 @@
 * {
     margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 30vh;
+    background-image: url('./pattern-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.container h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    margin-top: 20px;
+    font-size: 33px;
+}
+
+.ip-input-container {
+    width: 35vw;
+    margin-top: 20px;
+}
+
+.ip-input-container>input {
+    padding: 15px;
+    border-radius: 15px 0 0 15px;
+    border: none;
+    outline: none;
+    width: 80%;
+    font-size: 15px;
+}
+
+.ip-input-container>button {
+
+    height: 100%;
+    background-position: center;
+    border-radius: 0 15px 15px 0;
+    background-color: black;
+    background-image: url('./icons/icon-arrow.svg');
+    background-repeat: no-repeat;
+    outline: none;
+    border: none;
+
+}
+
+.ip-input-container>button:hover {
+    cursor: pointer;
 }
 
 .map {
-    height: 90vh;
+    height: 70vh;
     width: 100%;
+    z-index: 0;
 }
