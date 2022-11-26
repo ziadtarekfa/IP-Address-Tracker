@@ -1,0 +1,27 @@
+.card {
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 22%;
+    left: 19%;
+    width: 60vw;
+    max-width: 80vw;
+}
+
+.card hr {
+    border-top: none;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 80px;
+}
+
+.card>div {
+    padding: 40px 20px 40px 20px;
+}
+
+.card h5 {
+    color: #8b8b8b;
+    letter-spacing: 2px;
+}

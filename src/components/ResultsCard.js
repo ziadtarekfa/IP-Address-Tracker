@@ -1,38 +1,37 @@
-import { useEffect } from 'react';
-import '../IpResult.css';
+import '../ResultsCard.css';
 
-const IpResult = ({ myprop }) => {
+const ResultsCard = ({ data }) => {
 
 
     return (
-        <div className="ip-result">
+        <div className="card">
 
-            <div className="ip-address-container">
+            <div className="ip-address-container" >
                 <h5>IP ADDRESS</h5>
-                <h2>{myprop.ip}</h2>
+                <h2>{data.ip}</h2>
 
             </div>
             <hr />
             <div className="location-container">
                 <h5>LOCATION</h5>
-                <h2>{myprop.ipLocation} </h2>
+                <h2>{data.region} </h2>
 
             </div>
             <hr />
 
             <div className="timezone-container">
                 <h5>TIMEZONE</h5>
-                <h2>{myprop.timezone}</h2>
+                <h2>{data.timezone}</h2>
             </div>
             <hr />
 
             <div className="isp-container">
                 <h5>ISP</h5>
-                <h2>{myprop.isp}</h2>
+                <h2>{data.isp}</h2>
             </div>
 
         </div>
     );
 }
 
-export default IpResult;
+export default ResultsCard;
