@@ -1,12 +1,6 @@
-* {
-    margin: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-}
-
 .container {
     height: 30vh;
-    background-image: url('./pattern-bg.png');
+    background-image: url('../assets/pattern-bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -41,7 +35,7 @@
     background-position: center;
     border-radius: 0 15px 15px 0;
     background-color: black;
-    background-image: url('./icons/icon-arrow.svg');
+    background-image: url('../assets//icon-arrow.svg');
     background-repeat: no-repeat;
     padding: 18px;
 
@@ -49,10 +43,4 @@
 
 .ip-input-container>button:hover {
     cursor: pointer;
-}
-
-.map {
-    height: 70vh;
-    width: 100%;
-    z-index: 0;
 }

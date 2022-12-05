@@ -1,4 +1,4 @@
-import '../ResultsCard.css';
+import '../styles/ResultsCard.css';
 
 const ResultsCard = ({ data }) => {
 

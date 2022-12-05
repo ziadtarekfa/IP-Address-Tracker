@@ -1,24 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
-import './App.css';
+import './styles/App.css';
 import ResultsCard from './components/ResultsCard';
+import Header from './components/Header';
 
 
 function App() {
 
-  const mapRef = useRef();
-  const ipInputRef = useRef();
+
   const defaultPosition = [38.685516, -101.073324];
-  const [markerPosition, setMarkerPosition] = useState(defaultPosition);
-
-
-  const [ipResult, setIpResult] = useState({
+  const defaultOutput = {
     ip: "192.17.2.1",
     region: "Brooklyn, NY 10001",
     timezone: "UTC-05:00",
     isp: "SpaceX Starlink"
-  });
+  };
 
+  const mapRef = useRef();
+  const [markerPosition, setMarkerPosition] = useState(defaultPosition);
+  const [ipResult, setIpResult] = useState(defaultOutput);
 
 
   useEffect(() => {
@@ -44,52 +44,10 @@ function App() {
     }
   }, []);
 
-
-
-
-  function getIpData(e) {
-    const { current: map } = mapRef;
-    e.preventDefault();
-
-    fetch(`https://api.ipbase.com/v2/info?ip=${ipInputRef.current.value}&apikey=olN7DnIT9RNM0SBtUAKGl1cQdau13huJhOcpLMzI`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((res) => {
-        const data = res.data;
-        if (res.message) {
-          console.log("Invalid IP Address");
-        }
-        else {
-          const location = data.location;
-          setIpResult({
-            ip: data.ip,
-            region: location.city.name_translated + " " + location.country.name,
-            timezone: data.timezone.code + " -05:00",
-            isp: data.connection.isp
-
-          });
-          map.flyTo([location.latitude, location.longitude], 12);
-          setMarkerPosition([location.latitude, location.longitude]);
-        }
-
-      });
-  }
-
   return (
 
     <main>
-
-      <div className='container'>
-        <h2>IP Address Tracker</h2>
-        <form className='ip-input-container' onSubmit={getIpData}>
-          <input required placeholder='Search for any IP address' ref={ipInputRef}></input>
-          <button></button>
-        </form>
-
-      </div>
-
-
+      <Header setIpResult={setIpResult} setMarkerPosition={setMarkerPosition} mapRef={mapRef} />
       <MapContainer ref={mapRef}
         className='map'
         center={defaultPosition}

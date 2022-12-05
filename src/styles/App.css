@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.map {
+    height: 70vh;
+    width: 100%;
+    z-index: 0;
+}
