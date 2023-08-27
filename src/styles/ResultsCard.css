@@ -1,27 +1,55 @@
 .card {
     background-color: white;
-    border-radius: 15px;
+    border-radius: 1rem;
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    text-align: center;
     position: absolute;
-    top: 22%;
-    left: 19%;
-    width: 60vw;
-    max-width: 80vw;
+    top: 143px;
+    z-index: 1;
+    width: 73%;
+    padding: 0.5rem;
+    left: 50%;
+    max-width: 70rem;
+
+    transform: translate(-50%, 0);
 }
 
 .card hr {
-    border-top: none;
-    margin-top: auto;
-    margin-bottom: auto;
-    height: 80px;
+    border: 0.5px solid #d3d3d370;
 }
 
 .card>div {
-    padding: 40px 20px 40px 20px;
+    padding: 0.4rem 1rem;
 }
 
 .card h5 {
+    font-size: 0.7rem;
     color: #8b8b8b;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+}
+
+.card h2 {
+    font-size: 1rem;
+    margin-top: 0.7rem;
+}
+
+@media (min-width:768px) {
+    .card {
+        flex-direction: row;
+        justify-content: space-evenly;
+        top: calc(30vh - 53.5px);
+        text-align: start;
+
+    }
+
+    .card>div {
+        padding: 20px 0;
+    }
+}
+
+@media (min-width:1000px) {
+    .card h2 {
+        font-size: 1.5rem;
+    }
 }

@@ -48,6 +48,8 @@ function App() {
 
     <main>
       <Header setIpResult={setIpResult} setMarkerPosition={setMarkerPosition} mapRef={mapRef} />
+      <ResultsCard data={ipResult} />
+
       <MapContainer ref={mapRef}
         className='map'
         center={defaultPosition}
@@ -59,10 +61,11 @@ function App() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={markerPosition}></Marker>
+        <Marker position={markerPosition} />
 
       </MapContainer>
-      <ResultsCard data={ipResult} />
+
+
 
     </main>
 

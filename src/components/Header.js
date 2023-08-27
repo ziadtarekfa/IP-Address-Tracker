@@ -39,8 +39,8 @@ const Header = ({ setIpResult, setMarkerPosition, mapRef }) => {
         <div className='container'>
             <h2>IP Address Tracker</h2>
             <form className='ip-input-container' onSubmit={getIpData} >
-                <input required placeholder='Search for any IP address' ref={ipInputRef}></input>
-                <button></button>
+                    <input required placeholder='Search for any IP address' ref={ipInputRef}></input>
+                    <button></button>
             </form>
 
         </div>

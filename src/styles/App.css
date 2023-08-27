@@ -4,7 +4,12 @@
     font-family: sans-serif;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 .map {
+    position: static;
     height: 70vh;
     width: 100%;
     z-index: 0;
