@@ -1,17 +1,15 @@
+import 'react-toastify/dist/ReactToastify.css';
+import './styles/App.css';
+import Header from './components/Header';
 import { useEffect, useRef, useState } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
-import './styles/App.css';
 import ResultsCard from './components/ResultsCard';
-import Header from './components/Header';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 
 function App() {
 
-
   const defaultPosition = [38.685516, -101.073324];
-  const defaultOutput = {
+  const defaultIP = {
     ip: "192.17.2.1",
     region: "Brooklyn, NY 10001",
     timezone: "UTC-05:00",
@@ -20,7 +18,7 @@ function App() {
 
   const mapRef = useRef();
   const [markerPosition, setMarkerPosition] = useState(defaultPosition);
-  const [ipResult, setIpResult] = useState(defaultOutput);
+  const [ipResult, setIpResult] = useState(defaultIP);
 
 
   useEffect(() => {

@@ -11,28 +11,9 @@
     padding: 0.5rem;
     left: 50%;
     max-width: 70rem;
-
     transform: translate(-50%, 0);
 }
 
-.card hr {
-    border: 0.5px solid #d3d3d370;
-}
-
-.card>div {
-    padding: 0.4rem 1rem;
-}
-
-.card h5 {
-    font-size: 0.7rem;
-    color: #8b8b8b;
-    letter-spacing: 1px;
-}
-
-.card h2 {
-    font-size: 1rem;
-    margin-top: 0.7rem;
-}
 
 @media (min-width:768px) {
     .card {
@@ -40,16 +21,5 @@
         justify-content: space-evenly;
         top: calc(30vh - 53.5px);
         text-align: start;
-
-    }
-
-    .card>div {
-        padding: 20px 0;
-    }
-}
-
-@media (min-width:1000px) {
-    .card h2 {
-        font-size: 1.5rem;
     }
 }

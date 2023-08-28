@@ -14,7 +14,9 @@ const ResultsCard = ({ data }) => {
             {
                 cardData.map((item) => {
                     return (
+
                         <CardItem cardData={item} />
+
                     )
                 })
             }
