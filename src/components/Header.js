@@ -10,24 +10,33 @@ const Header = ({ setIpResult, setMarkerPosition, mapRef }) => {
     const getIpData = async (e) => {
         e.preventDefault();
 
-        const response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=459401e3078344dba53e7fb0b33a7808&ip=${ipInputRef.current.value}&fields=country_name,state_prov,latitude,longitude,isp,time_zone`);
-        const ipData = await response.json();
+        const ipPattern = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 
-        if (!response.ok) {
-            toast.error(ipData.message, {
+        if (!ipInputRef.current.value.match(ipPattern)) {
+            toast.error(("Invalid IP Address"), {
                 position: 'top-right'
             });
         }
+        else {
+            const response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=459401e3078344dba53e7fb0b33a7808&ip=${ipInputRef.current.value}&fields=country_name,state_prov,latitude,longitude,isp,time_zone`);
+            const ipData = await response.json();
 
-        map.flyTo([ipData.latitude, ipData.longitude], 6);
-        setMarkerPosition([ipData.latitude, ipData.longitude]);
+            if (!response.ok) {
+                toast.error(ipData.message, {
+                    position: 'top-right'
+                });
+            }
 
-        setIpResult({
-            ip: ipData.ip,
-            region: ipData.country_name + " " + ipData.state_prov,
-            timezone: "GMT -" + ipData.time_zone.offset,
-            isp: ipData.isp
-        });
+            map.flyTo([ipData.latitude, ipData.longitude], 6);
+            setMarkerPosition([ipData.latitude, ipData.longitude]);
+
+            setIpResult({
+                ip: ipData.ip,
+                region: ipData.country_name + " " + ipData.state_prov,
+                timezone: "GMT -" + ipData.time_zone.offset,
+                isp: ipData.isp
+            });
+        }
 
     }
 
