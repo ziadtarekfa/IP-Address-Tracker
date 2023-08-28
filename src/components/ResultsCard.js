@@ -12,10 +12,10 @@ const ResultsCard = ({ data }) => {
     return (
         <div className="card">
             {
-                cardData.map((item) => {
+                cardData.map((item, index) => {
                     return (
 
-                        <CardItem cardData={item} />
+                        <CardItem key={index} cardData={item} />
 
                     )
                 })
