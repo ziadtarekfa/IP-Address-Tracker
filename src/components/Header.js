@@ -18,8 +18,11 @@ const Header = ({ setIpResult, setMarkerPosition, mapRef }) => {
             });
         }
 
-
         const location = ipData.location;
+
+        map.flyTo([location.latitude, location.longitude], 12);
+        setMarkerPosition([location.latitude, location.longitude]);
+
         setIpResult({
             ip: ipData.ip,
             region: location.city.name_translated + " " + location.country.name,
@@ -27,8 +30,7 @@ const Header = ({ setIpResult, setMarkerPosition, mapRef }) => {
             isp: ipData.connection.isp
 
         });
-        map.flyTo([location.latitude, location.longitude], 12);
-        setMarkerPosition([location.latitude, location.longitude]);
+
     }
 
     return (

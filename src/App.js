@@ -16,33 +16,14 @@ function App() {
     isp: "SpaceX Starlink"
   };
 
-  const mapRef = useRef();
+  const mapRef = useRef(null);
   const [markerPosition, setMarkerPosition] = useState(defaultPosition);
   const [ipResult, setIpResult] = useState(defaultIP);
 
 
   useEffect(() => {
 
-    fetch("https://geolocation-db.com/json/").then((response) => {
-      return response.json();
-    }).then((data) => {
-      setIpResult({
-        ip: data.IPv4,
-        region: data.country_name,
-        timezone: "GMT -05:00",
-        isp: "TE DATA"
-      })
-    });
-
-    if ('geolocation' in navigator) {
-      /* geolocation is available */
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { current: map } = mapRef;
-        map.flyTo([position.coords.latitude, position.coords.longitude], 12);
-        setMarkerPosition([position.coords.latitude, position.coords.longitude]);
-      });
-    }
-  }, []);
+  }, [mapRef]);
 
   return (
 
@@ -50,7 +31,6 @@ function App() {
     <main>
       <Header setIpResult={setIpResult} setMarkerPosition={setMarkerPosition} mapRef={mapRef} />
       <ResultsCard data={ipResult} />
-
       <MapContainer ref={mapRef}
         className='map'
         center={defaultPosition}
