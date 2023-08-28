@@ -3,6 +3,8 @@ import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import './styles/App.css';
 import ResultsCard from './components/ResultsCard';
 import Header from './components/Header';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -46,6 +48,7 @@ function App() {
 
   return (
 
+
     <main>
       <Header setIpResult={setIpResult} setMarkerPosition={setMarkerPosition} mapRef={mapRef} />
       <ResultsCard data={ipResult} />
@@ -66,8 +69,10 @@ function App() {
       </MapContainer>
 
 
-
+      <ToastContainer />
     </main>
+
+
 
   );
 }

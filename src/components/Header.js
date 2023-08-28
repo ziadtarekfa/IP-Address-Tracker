@@ -1,46 +1,43 @@
-
 import '../styles/Header.css';
+import { toast } from 'react-toastify';
 import { useRef } from 'react';
 
 
 const Header = ({ setIpResult, setMarkerPosition, mapRef }) => {
     const { current: map } = mapRef;
     const ipInputRef = useRef();
-    function getIpData(e) {
-        e.preventDefault();
 
-        fetch(`https://api.ipbase.com/v2/info?ip=${ipInputRef.current.value}&apikey=olN7DnIT9RNM0SBtUAKGl1cQdau13huJhOcpLMzI`)
-            .then((response) => {
-                return response.json();
-            })
-            .then((res) => {
-                const data = res.data;
-                if (res.message) {
-                    console.log("Invalid IP Address");
-                }
-                else {
-                    const location = data.location;
-                    setIpResult({
-                        ip: data.ip,
-                        region: location.city.name_translated + " " + location.country.name,
-                        timezone: data.timezone.code + " -05:00",
-                        isp: data.connection.isp
+    const getIpData = async (e) => {
+            e.preventDefault();
+            const response = await fetch(`https://api.ipbase.com/v2/info?ip=${ipInputRef.current.value}&apikey=olN7DnIT9RNM0SBtUAKGl1cQdau13huJhOcpLMzI`);
+            const { data: ipData } = await response.json();
+            console.log(ipData);
 
-                    });
-                    map.flyTo([location.latitude, location.longitude], 12);
-                    setMarkerPosition([location.latitude, location.longitude]);
-                }
+            if (!response.ok) {
+                toast.error("Invalid IP Address", {
+                    position: 'top-right'
+                });
+            }
 
-            }).catch((err) => {
-                console.log(err);
+
+            const location = ipData.location;
+            setIpResult({
+                ip: ipData.ip,
+                region: location.city.name_translated + " " + location.country.name,
+                timezone: ipData.timezone.code + " -05:00",
+                isp: ipData.connection.isp
+
             });
-    }
+            map.flyTo([location.latitude, location.longitude], 12);
+            setMarkerPosition([location.latitude, location.longitude]);
+        } 
+
     return (
         <div className='container'>
             <h2>IP Address Tracker</h2>
             <form className='ip-input-container' onSubmit={getIpData} >
-                    <input required placeholder='Search for any IP address' ref={ipInputRef}></input>
-                    <button></button>
+                <input required placeholder='Search for any IP address' ref={ipInputRef}></input>
+                <button></button>
             </form>
 
         </div>
